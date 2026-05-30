@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup Form - DOM Assignment</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f4f4f4;
+    }
+    form {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #1877f2;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #145dbf;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <form id="signupForm">
+    <h2>Signup Form</h2>
+    <input type="text" id="name" placeholder="Enter Name">
+    <input type="email" id="email" placeholder="Enter Email">
+    <input type="password" id="password" placeholder="Enter Password">
+    <button type="submit">Sign Up</button>
+  </form>
+
+  <script>
+    // submitHandler function jo form submit kare
+    function submitHandler(event) {
+      event.preventDefault(); // page reload rokne ke liye
+
+      // DOM se values lena - hint: use dom
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+
+      // conditions aap banayegy
+      // 1. khali form submit na ho
+      if(name === "" || email === "" || password === "") {
+        alert("Error: All fields are required! Khali form submit nahi ho sakta.");
+        return;
+      }
+
+      // 2. password ki length 8 se kam na ho
+      if(password.length < 8) {
+        alert("Error: Password ki length 8 se kam nahi ho sakti!");
+        return;
+      }
+
+      // user ka tamam data userObj mai rakh den
+      const userObj = {
+        name: name,
+        email: email,
+        password: password
+      };
+
+      console.log("User Object:", userObj);
+
+      // form submit ke baad user ko alert ya console mai message show karden
+      alert("User signup successfully!");
+      console.log("User signup successfully!");
+      
+      // form reset kar do
+      document.getElementById('signupForm').reset();
+    }
+
+    // Event listener lagana - DOM use
+    document.getElementById('signupForm').addEventListener('submit', submitHandler);
+  </script>
+
+</body>
+</html>
